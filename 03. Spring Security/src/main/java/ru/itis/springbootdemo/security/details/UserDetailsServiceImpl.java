@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component;
 import ru.itis.springbootdemo.models.User;
 import ru.itis.springbootdemo.repositories.UsersRepository;
 
-@Component
-@Qualifier("customUserDetailsService")
+@Component("customUserDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
@@ -18,7 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = usersRepository.findByEmail(email)
+        User user = usersRepository.    findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         return new UserDetailsImpl(user);
